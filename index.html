@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>School</title>
+</head>
+<body>
+    <h2>Create a Student: </h2>
+
+    <!-- form to submit a student -->
+    <form id='studentForm'>
+        <input type='text' placeholder='Name' id='name'>
+        <input type='number' placeholder='Age' id='age'>
+        <input type='text' placeholder='ID' id='identification'>
+        <select id='gender'>
+            <option value='Male'>Male</option>
+            <option value='Female'>Female</option>
+        </select>
+        <input type="submit">
+    </form>
+
+    <br>
+        
+    <h2>Edit a Student: </h2>
+
+    <form id='updateStudentForm'>
+        <input type='text' placeholder='ID (required, immutable)' id='updateIdentification'>
+        <input type='text' placeholder='Name' id='updateName'>
+        <input type='number' placeholder='Age' id='updateAge'>
+        <select id='updateGender'>
+            <option value='Male'>Male</option>
+            <option value='Female'>Female</option>
+        </select>
+        <input type="submit">
+    </form>
+
+    <br>
+    
+    <h2>Delete a student: </h2>
+
+    <form id='deleteStudentForm'>
+        <input type='text' placeholder='ID' id='deleteIdentification'>
+        <input type="submit">
+    </form>
+
+    <br>
+
+    <!-- Button that will trigger the get request when clicked -->
+    <button id="getAllStudents">Get All Students</button>
+
+    <table id="students"></table>
+
+<!-- Request Library -->
+<script src="js/request.js"></script>
+<!-- Our client side javascript -->
+<script src='js/app.js'></script>
+</body>
+</html>
