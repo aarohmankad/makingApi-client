@@ -1,17 +1,22 @@
+# Making API - Client
+
 Now that we have our server, lets start to make a client that can communicate with that server and manipulate those records.
 
 1.  Because our project is going to be making requests to our server, it also needs a server. However, this one is a lot more basic (we'll only need Express). First let's create a package.json file:
 
+```javascript
   {
     "dependencies": {
       "express": "^4.13.3"
     }
   }
+```
 
 2.  Now in Git Bash in your project directory, run `npm install`. This will install Express to your computer.
 
 3.  Now that we have our dependencies installed, create a server.js file.
 
+```javascript
   // This file creates a simple server for us to use
   // Not important to understand
   var
@@ -26,6 +31,7 @@ Now that we have our server, lets start to make a client that can communicate wi
 
   app.listen(9000);
   console.log('Magic happens on port 9000');
+```
 
 4.  See that this server file is a lot simpler than what we have server size. The reason we need a server is because Chrome (or any other browser) won't let you make an API request unless your website is on some sort of server. Also note how we use port 9000, because the ports for the client and server must be different.
 
@@ -33,6 +39,7 @@ Now that we have our server, lets start to make a client that can communicate wi
 
 6.  Now we can start creating our application. Let's start by creating an html file with a form to create a student.
 
+```html
   <!DOCTYPE html>
   <html>
   <head>
@@ -59,9 +66,11 @@ Now that we have our server, lets start to make a client that can communicate wi
   <script src='js/app.js'></script>
   </body>
   </html>
+```
 
 7.  Now create an `app.js` file in your js folder. We can now add an event listener on the form, and execute some code when the user submits the form to create a new Student.
 
+```js
   // Create a request object we will be using
   var request = new Request();
 
@@ -95,9 +104,11 @@ Now that we have our server, lets start to make a client that can communicate wi
       addDataToHTML(data);
     });
   });
+```
 
 8. Near the end of the function you will see a function call to addDataToHTML(). Let's create that function, or else we will get errors if we try to run the program.
 
+```javascript
   /**
    * adds student data to students table
    * @param data {Object} new student data
@@ -126,16 +137,20 @@ Now that we have our server, lets start to make a client that can communicate wi
     // Add row to table
     document.getElementById('students').appendChild(row);
   }
+```
 
 9. Now we can test our application. Open Git Bash anywhere and run mongod. Open Git Bash in your server project folder and run `node server.js`. Open Git Bash in your client project folder and run `node server.js`. Now in your browser go to `localhost:9000` and test out creating a student.
 
 10. Now that you've created students, try refreshing that page. You'll notice that all the students you created don't show up anymore. So let's create a button that will get all the students when we click it. First add this to index.html
 
+```html
   <!-- Button that will trigger the get request when clicked -->
   <button id="getAllStudents">Get All Students</button>
+```
 
 11. Now in the `app.js` file, let's add a similar event listener to what was added to the create student form.
 
+```javascript
   /**
    * When the get students button is clicked, execute this code
    */
@@ -153,9 +168,11 @@ Now that we have our server, lets start to make a client that can communicate wi
       replaceHTMLWithData(data);
     });
   });
+```
 
 12. You'll notice that at the end of the function we call replaceHTMLWithData(), let's also create that function (so we don't get any errors when we run it).
 
+```javascript
   /**
    * empties students table and adds all students to it
    * @param data {Array} array of student data
@@ -190,20 +207,24 @@ Now that we have our server, lets start to make a client that can communicate wi
       document.getElementById('students').appendChild(row);
     }
   }
+```
 
 13. Remember all those Git Bash windows you had open? In the two windows running `node server.js`, press Ctrl+C twice and press `Up` and then `Enter` in each of them. Now go to `localhost:9000` again and test out our new button.
 
 14. Now let's work on deleting students. Let's create a delete form. We just need the id of a student to delete him/her.
 
+```html
   <h2>Delete a student: </h2>
 
   <form id='deleteStudentForm'>
       <input type='text' placeholder='ID' id='deleteIdentification'>
       <input type="submit">
   </form>
+```
 
 15. Now in our app.js file, let's attach an event listener to the delete form.
 
+```javascript
   /**
    * when the delete form is submitted, execute code to add student
    * @param event {Object} event information on form submission
@@ -225,11 +246,13 @@ Now that we have our server, lets start to make a client that can communicate wi
       document.getElementById('getAllStudents').click();
     });
   });
+```
 
 16. In the Git Bash windows you had open running `node server.js`, press Ctrl+C twice and press `Up` and then `Enter` in each of them. Now go to `localhost:9000` again and test out the delete function. You should be able to create students, get all students, and then delete one using that students id.
 
 17. If you wanted to edit a student right now, we'd have to delete the old student and create a new one. Let's just make an edit form. In index.html: 
 
+```html
   <h2>Edit a Student: </h2>
 
   <form id='updateStudentForm'>
@@ -242,9 +265,11 @@ Now that we have our server, lets start to make a client that can communicate wi
       </select>
       <input type="submit">
   </form>
+```
 
 18. Now in app.js, attach an event listener to the edit student form.
 
+```javascript
   /**
    * when the update form is submitted, execute code to add student
    * @param event {Object} event information on form submission
@@ -274,6 +299,7 @@ Now that we have our server, lets start to make a client that can communicate wi
       document.getElementById('getAllStudents').click();
     });
   });
+```
 
 19. In the Git Bash windows you had open running `node server.js`, press Ctrl+C twice and press `Up` and then `Enter` in each of them. Now go to `localhost:9000` again and test out the update/edit function.
 
