@@ -20,7 +20,7 @@ document.getElementById('studentForm').addEventListener('submit', function(event
   // Send post request to api endpoint
   request.send({
     method: 'POST',
-    url: 'http://aaroh-makingApi-api.herokuapp.com/api/students',
+    url: 'http://localhost:8000/api/students',
     data: params,
   }, function(err, data) {
     if (err) {
@@ -50,7 +50,7 @@ document.getElementById('updateStudentForm').addEventListener('submit', function
   // Send post request to api endpoint
   request.send({
     method: 'PUT',
-    url: 'http://aaroh-makingApi-api.herokuapp.com/api/students/' + document.getElementById('updateIdentification').value,
+    url: 'http://localhost:8000/api/students/' + document.getElementById('updateIdentification').value,
     data: params,
   }, function(err, data) {
     if (err) {
@@ -73,7 +73,7 @@ document.getElementById('deleteStudentForm').addEventListener('submit', function
   // Send post request to api endpoint
   request.send({
     method: 'DELETE',
-    url: 'http://aaroh-makingApi-api.herokuapp.com/api/students/' + document.getElementById('deleteIdentification').value,
+    url: 'http://localhost:8000/api/students/' + document.getElementById('deleteIdentification').value,
   }, function(err, data) {
     if (err) {
       console.log(err);
@@ -91,7 +91,7 @@ document.getElementById('getAllStudents').addEventListener('click', function() {
   // Send get request to server for all students
   request.send({
     method: 'GET',
-    url: 'http://aaroh-makingApi-api.herokuapp.com/api/students',
+    url: 'http://localhost:8000/api/students',
   }, function(err, data) {
     if (err) {
       console.log(err);
